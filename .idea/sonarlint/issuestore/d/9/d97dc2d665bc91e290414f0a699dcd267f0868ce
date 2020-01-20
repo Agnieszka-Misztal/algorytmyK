@@ -1,0 +1,42 @@
+
+7squid:S1700"Rename field "board"(²«âùÿÿÿÿ8†ÉĞşú-
+Vsquid:S1197~"8Move the array designator from the variable to the type.(Ğ“¨®8ñğÃÆû-
+Dsquid:S1659"&Declare "opponent" on a separate line.(ÕÁüü8îã¹Æû-
+[
+squid:S106*"9Replace this use of System.out or System.err by a logger.(ÚŒù²ùÿÿÿÿ8ìÓæşú-
+Hsquid:S1125")Remove the literal "false" boolean value.(¯ô›©8ñğÃÆû-
+W
+squid:S106€"9Replace this use of System.out or System.err by a logger.(ËúÇÂ8º…¯ôû-
+tsquid:S00116"PRename this field "EMPTY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿó„˜ıÿÿÿÿ8†ÉĞşú-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(°¯ÿÁüÿÿÿÿ8ìÓæşú-
+[squid:S1197L"8Move the array designator from the variable to the type.(ê¸Ÿÿÿÿÿÿ8îã¹Æû-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(ä¤öã8ìÓæşú-
+[
+squid:S106-"9Replace this use of System.out or System.err by a logger.(ÅÅªúÿÿÿÿ8ìÓæşú-
+[
+squid:S106/"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ8ìÓæşú-
+[
+squid:S1061"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ8ìÓæşú-
+Vsquid:S1197D"8Move the array designator from the variable to the type.(ë¢ú‘8©•Æû-
+[
+squid:S106!"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ8ìÓæşú-
+V
+squid:S106("9Replace this use of System.out or System.err by a logger.(®œÉ8ìÓæşú-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(×•œ²8ìÓæşú-
+psquid:S3776~"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Ğ“¨®8ñğÃÆû-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ8ìÓæşú-
+W
+squid:S106õ"9Replace this use of System.out or System.err by a logger.(ÉäåŸ8•õÆÆû-
+Dsquid:S1170"!Make this final field static too.(ÿó„˜ıÿÿÿÿ8†ÉĞşú-
+Vsquid:S1197Í"8Move the array designator from the variable to the type.(«äËJ8•õÆÆû-
+[
+squid:S106""9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ8ìÓæşú-
+[
+squid:S106&"9Replace this use of System.out or System.err by a logger.(¢¥¸ùÿÿÿÿ8ìÓæşú-
+\
+squid:S106ı"9Replace this use of System.out or System.err by a logger.(›ò©ùÿÿÿÿ8º…¯ôû-
+usquid:S3776L"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ê¸Ÿÿÿÿÿÿ8ÅŞ¿Æû-

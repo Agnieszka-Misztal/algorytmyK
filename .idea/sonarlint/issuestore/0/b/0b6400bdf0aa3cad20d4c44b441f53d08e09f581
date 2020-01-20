@@ -1,0 +1,14 @@
+
+isquid:CommentedOutCodeLine+"<This block of commented-out lines of code should be removed.(®Á¥ø8ëŒ¹ôû-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(œ¨üŽùÿÿÿÿ8Î„€ôû-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(°œ»•8Î„€ôû-
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(Æò¼õ8‘Œ¨óû-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(”îý‡ÿÿÿÿÿ8Î„€ôû-
+{
+squid:S135"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆžÿÿÿÿÿ8Š³¾ôû-
+[
+squid:S106 "9Replace this use of System.out or System.err by a logger.(½«ƒûÿÿÿÿ8˜”•€û-
