@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-// Java program to find the
-// next optimal move for a player
+
 class GFG{
 
     public static void main(String[] args) {
@@ -40,12 +39,7 @@ class GFG{
 
 
             board1.display();
-//            if (board1.evaluate(board1.getBoard()) == 10){
-//                System.out.println("przegrałeś!");
-//                    break;}
-//            if (board1.evaluate(board1.getBoard()) == (-10)){
-//                System.out.println("koniecccc");
-//                break;}
+
                 if(board1.check() != 0){
                     break;
                 }
@@ -53,6 +47,7 @@ class GFG{
 
             }
             else{
+                System.out.println("remis");
                 break;
             }
 

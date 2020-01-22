@@ -1,10 +1,13 @@
+import java.util.Scanner;
+
 public class Board {
 
 
     private char[][] board;
+    private Scanner scanner;
 
     private final char EMPTY = '_';
-    private char player = 'o', opponent = 'x';
+    private char cpu = 'o', opponent = 'x';
 
     public char[][] getBoard() {
         return board;
@@ -15,6 +18,7 @@ public class Board {
     }
 
     public Board() {
+        scanner = new Scanner(System.in);
         board = new char[3][3];
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
@@ -36,9 +40,9 @@ public class Board {
         // display the board
         for (int j = 0; j < board.length; j++) {
             System.out.print("    " + j + ": ");
-            for (int col = 0; col < board.length; col++) {
-                System.out.print(board[j][col]);
-                if (col < board.length - 1)
+            for (int column = 0; column < board.length; column++) {
+                System.out.print(board[j][column]);
+                if (column < board.length - 1)
                     System.out.print(" | ");
             }
             if (j < board.length - 1)
@@ -53,6 +57,18 @@ public class Board {
         if (board[row][col] == EMPTY) {
             board[row][col] = 'x';
         }
+        else{
+            while (board[row][col] != EMPTY) {
+                System.out.println("Hej to miejsce jest zajete!");
+                System.out.println("wybierz jeszcze raz");
+                System.out.println("Podaj wiersz: ");
+                row = scanner.nextInt();
+                System.out.println("Podaj kolumnę");
+                col = scanner.nextInt();
+
+            }
+            board[row][col] = 'x';
+        }
 
         return board;
     }
@@ -61,6 +77,7 @@ public class Board {
         if (board[row][col] == EMPTY) {
             board[row][col] = 'o';
         }
+
 
         return board;
     }
@@ -74,26 +91,26 @@ public class Board {
     }
 
     public int evaluate(char b[][]) {
-        // Checking for Rows for X or O victory.
+        // sprawdzanie wiersszy
         for (int row = 0; row < 3; row++)
         {
             if (b[row][0] == b[row][1] &&
                     b[row][1] == b[row][2])
             {
-                if (b[row][0] == player)
+                if (b[row][0] == cpu)
                     return +10;
                 else if (b[row][0] == opponent)
                     return -10;
             }
         }
 
-        // Checking for Columns for X or O victory.
+        // sprawdzanie kolumn
         for (int col = 0; col < 3; col++)
         {
             if (b[0][col] == b[1][col] &&
                     b[1][col] == b[2][col])
             {
-                if (b[0][col] == player)
+                if (b[0][col] == cpu)
                     return +10;
 
                 else if (b[0][col] == opponent)
@@ -101,10 +118,10 @@ public class Board {
             }
         }
 
-        // Checking for Diagonals for X or O victory.
+        // sprawdzanie po skosie
         if (b[0][0] == b[1][1] && b[1][1] == b[2][2])
         {
-            if (b[0][0] == player)
+            if (b[0][0] == cpu)
                 return +10;
             else if (b[0][0] == opponent)
                 return -10;
@@ -112,7 +129,7 @@ public class Board {
 
         if (b[0][2] == b[1][1] && b[1][1] == b[2][0])
         {
-            if (b[0][2] == player)
+            if (b[0][2] == cpu)
                 return +10;
             else if (b[0][2] == opponent)
                 return -10;
@@ -157,7 +174,7 @@ public class Board {
                     if (board[i][j]=='_')
                     {
                         // Make the move
-                        board[i][j] = player;
+                        board[i][j] = cpu;
 
                         // Call minimax recursively and choose
                         // the maximum value
@@ -220,7 +237,7 @@ public class Board {
                 if (board[i][j] == '_')
                 {
                     // Make the move
-                    board[i][j] = player;
+                    board[i][j] = cpu;
 
                     // compute evaluation function for this
                     // move.
@@ -253,8 +270,13 @@ public class Board {
             System.out.println("przegrałeś!");
             return 1;}
         if (evaluate(board) == (-10)){
-            System.out.println("koniecccc");
+            System.out.println("wygrales");
             return 1;}
+         if(!isMovesLeft(board)){
+             System.out.println("remis");
+             return 1;
+         }
+
             return 0;
     }
 
