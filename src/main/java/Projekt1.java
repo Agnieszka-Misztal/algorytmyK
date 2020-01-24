@@ -4,15 +4,13 @@
 import java.util.*;
 import java.lang.*;
 
-public class Test{
+public class Projekt1 {
 
-    private final static boolean LEFT_TO_RIGHT = true;
-    private final static boolean RIGHT_TO_LEFT = false;
+    private final static boolean RIGHT = true;
+    private final static boolean LEFT = false;
 
-    // Utility functions for
-    // finding the position
-    // of largest mobile
-    // integer in a[].
+
+    //pozycja najwiekszego elemntu /mobilnego elementu
     public static int searchArr(int a[], int n,
                                 int mobile)
     {
@@ -24,39 +22,35 @@ public class Test{
         return 0;
     }
 
-    // To carry out step 1
-    // of the algorithm i.e.
-    // to find the largest
-    // mobile integer.
-    public static int getMobile(int a[],
-                                boolean dir[], int n)
+    //znajdz najwieksza wartosc
+    //musi byc wiekszy od swojego siąsiada  w ktorego strone jest skierowany
+    public static int getMobile(int permutation[],
+                                boolean directions[], int n)
     {
         int mobile_prev = 0, mobile = 0;
 
         for (int i = 0; i < n; i++)
         {
-            // direction 0 represents
-            // RIGHT TO LEFT.
-            if (dir[a[i] - 1] == RIGHT_TO_LEFT &&
+            // left - 0
+            if (directions[permutation[i] - 1] == LEFT &&
                     i != 0)
             {
-                if (a[i] > a[i - 1] &&
-                        a[i] > mobile_prev)
+                if (permutation[i] > permutation[i - 1] &&
+                        permutation[i] > mobile_prev)
                 {
-                    mobile = a[i];
+                    mobile = permutation[i];
                     mobile_prev = mobile;
                 }
             }
 
-            // direction 1 represents
-            // LEFT TO RIGHT.
-            if (dir[a[i] - 1] == LEFT_TO_RIGHT &&
+            // right - 1
+            if (directions[permutation[i] - 1] == RIGHT &&
                     i !=n - 1)
             {
-                if (a[i] > a[i + 1] &&
-                        a[i] > mobile_prev)
+                if (permutation[i] > permutation[i + 1] &&
+                        permutation[i] > mobile_prev)
                 {
-                    mobile = a[i];
+                    mobile = permutation[i];
                     mobile_prev = mobile;
                 }
             }
@@ -68,105 +62,88 @@ public class Test{
             return mobile;
     }
 
-    // Prints a single
-    // permutation
-    public static int printOnePerm(int a[], boolean dir[],
-                                   int n)
+
+    public static int generateNextPermutation(int permutation[], boolean directions[],
+                                              int n)
     {
-        int mobile = getMobile(a, dir, n);
-        int pos = searchArr(a, n, mobile);
+        //wartosc mobilnego elemntu
+        int mobile = getMobile(permutation, directions, n);
+        //indeks mobilnego elemntu
+        int position = searchArr(permutation, n, mobile);
 
-        // swapping the elements
-        // according to the
-        // direction i.e. dir[].
-        if (dir[a[pos - 1] - 1] == RIGHT_TO_LEFT)
+        // zamien z sąsiadem w korego strone jest skierowany mobilny element
+        if (directions[permutation[position - 1] - 1] == LEFT)
         {
-            int temp = a[pos - 1];
-            a[pos - 1] = a[pos - 2];
-            a[pos - 2] = temp;
+            int temp = permutation[position - 1];
+            permutation[position - 1] = permutation[position - 2];
+            permutation[position - 2] = temp;
         }
-        else if (dir[a[pos - 1] - 1] == LEFT_TO_RIGHT)
+        else if (directions[permutation[position - 1] - 1] == RIGHT)
         {
-            int temp = a[pos];
-            a[pos] = a[pos - 1];
-            a[pos - 1] = temp;
+            int temp = permutation[position];
+            permutation[position] = permutation[position - 1];
+            permutation[position - 1] = temp;
         }
 
-        // changing the directions
-        // for elements greater
-        // than largest mobile integer.
+        //zmiana kierunkow, elemntow ktore sa wieksze od mobilnego
         for (int i = 0; i < n; i++)
         {
-            if (a[i] > mobile)
+            if (permutation[i] > mobile)
             {
-                if (dir[a[i] - 1] == LEFT_TO_RIGHT)
-                    dir[a[i] - 1] = RIGHT_TO_LEFT;
+                if (directions[permutation[i] - 1] == RIGHT)
+                    directions[permutation[i] - 1] = LEFT;
 
-                else if (dir[a[i] - 1] == RIGHT_TO_LEFT)
-                    dir[a[i] - 1] = LEFT_TO_RIGHT;
+                else if (directions[permutation[i] - 1] == LEFT)
+                    directions[permutation[i] - 1] = RIGHT;
             }
         }
 
         for (int i = 0; i < n; i++)
-            System.out.print(a[i]);
+            System.out.print(permutation[i]);
 
         System.out.print(" ");
 
         return 0;
     }
 
-    // To end the algorithm
-    // for efficiency it ends
-    // at the factorial of n
-    // because number of
-    // permutations possible
-    // is just n!.
+  //ilosc mozliwych permutacji
     public static int fact(int n)
     {
-        int res = 1;
+        int factorial = 1;
 
         for (int i = 1; i <= n; i++)
-            res = res * i;
-        return res;
+            factorial = factorial * i;
+        return factorial;
     }
 
-    // This function mainly
-    // calls printOnePerm()
-    // one by one to print
-    // all permutations.
+
     public static void printPermutation(int n)
     {
-        // To store current
-        // permutation
-        int[] a = new int[n];
 
-        // To store current
-        // directions
-        boolean[] dir = new boolean[n];
+        int[] permutation = new int[n];
 
-        // storing the elements
-        // from 1 to n and
-        // printing first permutation.
+
+        boolean[] directions = new boolean[n];
+
+        // permutacja o ranku 0
         System.out.print("0: ");
         for (int i = 0; i < n; i++)
         {
-            a[i] = i + 1;
-            System.out.print(a[i]);
+            permutation[i] = i + 1;
+            System.out.print(permutation[i]);
         }
 
         System.out.print("\n");
 
-        // initially all directions
-        // are set to RIGHT TO
-        // LEFT i.e. 0.
+        //wszytkie kierunki na lewo < najmniejszy do najwiekszego
         for (int i = 0; i < n; i++)
-            dir[i] = RIGHT_TO_LEFT;
+            directions[i] = LEFT;
 
-        // for generating permutations
-        // in the order.
+
+        //generuj reszte permutacji
         for (int i = 1; i < fact(n); i++){
             System.out.print(i +": ");
-            printOnePerm(a, dir, n);
+            generateNextPermutation(permutation, directions, n);
             System.out.println();}
 
     }
@@ -190,7 +167,7 @@ public class Test{
         for(Integer i : randomList){
             System.out.print(i + " ");
         }
-        int rank = p.trotterJohnsonRank(randomList,length);
+        int rank = p.rank(randomList,length);
         System.out.print("Rank: " + rank);
         //System.out.println("Następnik: " + p.unrank(rank + 1, length));
         System.out.println();
@@ -224,4 +201,4 @@ public class Test{
 
 }
 
-// This code is contributed by Sagar Shukla
+

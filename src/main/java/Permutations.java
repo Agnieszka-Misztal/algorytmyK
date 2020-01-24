@@ -57,7 +57,7 @@ public class Permutations {
 
 
 
-    public  int trotterJohnsonRank( Integer pi[], int n )
+    public  int rank(Integer pi[], int n )
     {
         int r = 0;
         for (int j = 2; j <=n ; j++) {

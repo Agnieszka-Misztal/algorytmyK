@@ -1,11 +1,9 @@
 import java.util.Scanner;
 
-
-class GFG{
+public class main {
 
     public static void main(String[] args) {
-
-        Board board1 = new Board();
+        Board2 board1 = new Board2();
         board1.display();
         Scanner scanner = new Scanner(System.in);
         int row = 0;
@@ -19,12 +17,9 @@ class GFG{
             Move bestMove = board1.findBestMove(board1.getBoard());
             board1.mark2(board1.getBoard(), bestMove.row,bestMove.col);
             board1.display();
-            }
-
-
+        }
 
         while (true){
-
 
             System.out.println("Podaj wiersz: ");
             row = scanner.nextInt();
@@ -33,28 +28,20 @@ class GFG{
 
             board1.mark(board1.getBoard(), row, col);
             board1.display();
+
             if(board1.isMovesLeft(board1.getBoard())){
-            Move bestMove = board1.findBestMove(board1.getBoard());
-            board1.mark2(board1.getBoard(), bestMove.row,bestMove.col);
-
-
-            board1.display();
+                Move bestMove = board1.findBestMove(board1.getBoard());
+                board1.mark2(board1.getBoard(), bestMove.row,bestMove.col);
+                board1.display();
 
                 if(board1.check() != 0){
                     break;
                 }
-
-
             }
             else{
                 System.out.println("remis");
                 break;
             }
-
         }
-
-
-
-}}
-
+    }}
 

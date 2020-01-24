@@ -1,3 +1,7 @@
+package testy;
+
+import testy.Board;
+
 import java.util.Scanner;
 
 public class Projekt2 {

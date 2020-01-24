@@ -1,13 +1,14 @@
 import java.util.Scanner;
 
-public class Board {
+public class Board2 {
 
 
     private char[][] board;
     private Scanner scanner;
 
     private final char EMPTY = '_';
-    private char cpu = 'o', opponent = 'x';
+    private char cpu = 'o', player = 'x';
+
 
     public char[][] getBoard() {
         return board;
@@ -17,7 +18,7 @@ public class Board {
         this.board = board;
     }
 
-    public Board() {
+    public Board2() {
         scanner = new Scanner(System.in);
         board = new char[3][3];
         for (int i = 0; i < 3; i++)
@@ -99,7 +100,7 @@ public class Board {
             {
                 if (b[row][0] == cpu)
                     return +10;
-                else if (b[row][0] == opponent)
+                else if (b[row][0] == player)
                     return -10;
             }
         }
@@ -113,7 +114,7 @@ public class Board {
                 if (b[0][col] == cpu)
                     return +10;
 
-                else if (b[0][col] == opponent)
+                else if (b[0][col] == player)
                     return -10;
             }
         }
@@ -123,7 +124,7 @@ public class Board {
         {
             if (b[0][0] == cpu)
                 return +10;
-            else if (b[0][0] == opponent)
+            else if (b[0][0] == player)
                 return -10;
         }
 
@@ -131,57 +132,56 @@ public class Board {
         {
             if (b[0][2] == cpu)
                 return +10;
-            else if (b[0][2] == opponent)
+            else if (b[0][2] == player)
                 return -10;
         }
 
-        // Else if none of them have won then return 0
+
         return 0;
 
     }
 
+    //zwraca wartosc planszy dla wszytkich dostepncyh ruchów
+
     public int minimax(char board[][],
                        int depth, Boolean isMax)
     {
+        depth = 1;
         int score = evaluate(board);
 
-        // If Maximizer has won the game
-        // return his/her evaluated score
+        //cpu win
         if (score == 10)
-            return score;
+            return score -depth;
 
-        // If Minimizer has won the game
-        // return his/her evaluated score
+        // player win
         if (score == -10)
-            return score;
+            return score -depth;
 
-        // If there are no more moves and
-        // no winner then it is a tie
+        // remis
         if (isMovesLeft(board) == false)
-            return 0;
+            return 0 -depth;
 
-        // If this maximizer's move
+
         if (isMax)
         {
             int best = -1000;
 
-            // Traverse all cells
+
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    // Check if cell is empty
+
                     if (board[i][j]=='_')
                     {
-                        // Make the move
+                        //ruch cpu
                         board[i][j] = cpu;
 
-                        // Call minimax recursively and choose
-                        // the maximum value
+                        //wywolanie rekurencji, wybranie maksymalnej wart, zwiekszanie glebokosci
                         best = Math.max(best, minimax(board,
                                 depth + 1, !isMax));
 
-                        // Undo the move
+                        //cofnij ruch
                         board[i][j] = '_';
                     }
                 }
@@ -189,28 +189,27 @@ public class Board {
             return best;
         }
 
-        // If this minimizer's move
+        // podpowiedzi dla gracza
         else
         {
             int best = 1000;
 
-            // Traverse all cells
+
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    // Check if cell is empty
+
                     if (board[i][j] == '_')
                     {
-                        // Make the move
-                        board[i][j] = opponent;
 
-                        // Call minimax recursively and choose
-                        // the minimum value
+                        board[i][j] = player;
+
+
                         best = Math.min(best, minimax(board,
                                 depth + 1, !isMax));
 
-                        // Undo the move
+
                         board[i][j] = '_';
                     }
                 }
@@ -226,41 +225,36 @@ public class Board {
         bestMove.row = -1;
         bestMove.col = -1;
 
-        // Traverse all cells, evaluate minimax function
-        // for all empty cells. And return the cell
-        // with optimal value.
+        // wywolanie min max dla wszytkich wolnych miejsc
+
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                // Check if cell is empty
+
                 if (board[i][j] == '_')
                 {
-                    // Make the move
+
                     board[i][j] = cpu;
 
-                    // compute evaluation function for this
-                    // move.
-                    int moveVal = minimax(board, 0, false);
+                    //wartosc dla tego ruchu
+                    int temp = minimax(board, 0, false);
 
-                    // Undo the move
+                    //cofnij
                     board[i][j] = '_';
 
-                    // If the value of the current move is
-                    // more than the best value, then update
-                    // best/
-                    if (moveVal > bestVal)
+                    //jezeli ruch jest lepszy, podmien
+                    if (temp > bestVal)
                     {
                         bestMove.row = i;
                         bestMove.col = j;
-                        bestVal = moveVal;
+                        bestVal = temp;
                     }
                 }
             }
         }
 
-        System.out.printf("The value of the best Move " +
-                "is : %d\n\n", bestVal);
+
 
         return bestMove;
     }
@@ -272,14 +266,15 @@ public class Board {
         if (evaluate(board) == (-10)){
             System.out.println("wygrales");
             return 1;}
-         if(!isMovesLeft(board)){
-             System.out.println("remis");
-             return 1;
-         }
+        if(!isMovesLeft(board)){
+            System.out.println("remis");
+            return 1;
+        }
 
-            return 0;
+        return 0;
     }
 
 
 }
+
 
